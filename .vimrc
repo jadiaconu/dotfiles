@@ -1,0 +1,208 @@
+filetype plugin indent on
+set term=xterm-256color
+
+" Visual aspect
+colorscheme xoria256
+
+" Spelling
+set spelllang=en_us
+set spell
+
+" After setting the xoria256 colorscheme, the background is incorrectly reset
+" to 'light', this is a workaround to set it to 'dark'.
+syntax off
+set background=dark
+syntax enable
+set backspace=indent,eol,start
+set omnifunc=syntaxcomplete#Complete
+
+" Insert spaces instead of tab
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set expandtab
+
+" Global settings
+set incsearch
+set modelines=0
+set hidden
+set autoread                       " Update buffer when file changes elsewhere
+set novisualbell
+set ttyfast
+set number                         " Display line number
+set history=1000
+
+" Suffixes : these are the files we are unlikely to edit
+set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.out,.toc
+
+set ruler                          " Show cursor position at all times
+set textwidth=0                    " Don't wrap words by default
+set backspace=indent,eol,start
+set showmatch
+set showmode
+set showcmd
+
+" Highlight column 80
+if exists('+colorcolumn')
+  highlight ColorColumn ctermbg=233 guibg=#121212
+  set colorcolumn=80
+endif
+
+" GUI Settings
+if has("gui_running")
+  set guioptions-=m " Remove menu bar
+  set guioptions-=T " Remove toolbar
+  set guioptions-=r " Remove right-hand scroll bar
+  set guioptions-=L " Remove left-hand scroll bar when vertical split
+endif
+
+" Search settings
+set incsearch
+set smartcase
+set infercase
+set hlsearch
+set showfulltag
+
+" Scrolling
+set scrolloff=3
+set sidescrolloff=2
+
+" Tab complete menu
+set wildmode=longest:full
+set wildmenu
+set wildignore=*.o,*.a,*.so,*.ko,*~,*.swp,*.pyc,*.dll,tags,*.o.*
+set wildignore+=.git/,.hg/,.svn/
+
+" Indentation
+set list
+set listchars=
+set listchars+=tab:>-
+set listchars+=trail:·
+set listchars+=extends:»
+set listchars+=precedes:«
+set listchars+=nbsp:⣿
+
+" Plugins
+call plug#begin('~/.vim/plugged')
+
+" Language
+Plug 'fatih/vim-go'
+Plug 'keith/swift.vim'
+Plug 'pangloss/vim-javascript'
+Plug 'rust-lang/rust.vim'
+Plug 'leafgarland/typescript-vim'
+Plug 'elzr/vim-json'
+Plug 'chr4/nginx.vim'
+Plug 'vim-scripts/c.vim'
+Plug 'kchmck/vim-coffee-script'
+
+" Completion -> conflict with ctags
+" Plug 'rip-rip/clang_complete'
+
+" Code
+Plug 'sheerun/vim-polyglot'
+Plug 'tomtom/tcomment_vim'
+Plug 'tpope/vim-surround'
+Plug 'vim-scripts/AutoClose'
+Plug 'ntpeters/vim-better-whitespace'
+Plug 'junegunn/vim-easy-align'
+Plug 'hashivim/vim-terraform'
+Plug 'leafgarland/typescript-vim'
+Plug 'liuchengxu/vim-which-key'
+Plug 'rhysd/vim-clang-format'
+
+" Tools
+Plug 'preservim/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'itchyny/lightline.vim'
+Plug 'mustache/vim-mustache-handlebars'
+Plug 'tpope/vim-fugitive'
+Plug 'mileszs/ack.vim'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'Valloric/ListToggle'
+Plug 'scrooloose/nerdcommenter'
+Plug 'tpope/vim-haml'
+Plug 'rhysd/vim-grammarous'
+Plug 'mxw/vim-jsx'
+Plug 'ngmy/vim-rubocop'
+Plug 'gabrielelana/vim-markdown'
+Plug 'airblade/vim-gitgutter'
+Plug 'jiangmiao/auto-pairs'
+Plug 'chiel92/vim-autoformat'
+Plug 'ryanoasis/vim-devicons'
+Plug 'preservim/tagbar'
+Plug 'mbbill/undotree'
+
+call plug#end()
+
+" File open
+let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+
+" JavaScript
+let g:javascript_plugin_jsdoc = 1
+let g:javascript_plugin_ngdoc = 1
+let g:javascript_plugin_flow = 1
+
+let g:netrw_localrmdir='rm -r'
+
+" C autocomplete
+let g:clang_library_path='/usr/lib/x86_64-linux-gnu/libclang-6.0.so'
+let g:clang_user_options='|| exit 0'
+let g:clang_complete_auto = 1
+let g:clang_complete_copen = 1
+
+" Move lines around
+nnoremap <c-j> :m .+1<CR>==
+nnoremap <c-k> :m .-2<CR>==
+inoremap <c-j> <Esc>:m .+1<CR>==gi
+inoremap <c-k> <Esc>:m .-2<CR>==gi
+vnoremap <c-j> :m '>+1<CR>gv=gv
+vnoremap <c-k> :m '<-2<CR>gv=gv
+
+" Nerd Tree
+" autocmd vimenter * NERDTree
+" autocmd StdinReadPre * let s:std_in=1
+" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+" Git Status
+let g:NERDTreeGitStatusUseNerdFonts = 1
+let g:NERDTreeGitStatusIndicatorMapCustom = {
+            \ 'Modified'  :'✹',
+            \ 'Staged'    :'✚',
+            \ 'Untracked' :'✭',
+            \ 'Renamed'   :'➜',
+            \ 'Unmerged'  :'═',
+            \ 'Deleted'   :'✖',
+            \ 'Dirty'     :'✗',
+            \ 'Ignored'   :'☒',
+            \ 'Clean'     :'✔︎',
+            \ 'Unknown'   :'?',
+            \ }
+
+" Swift
+let g:syntastic_swift_checkers = ['swiftpm', 'swiftlint']
+
+" CTags
+set tags=tags
+nnoremap <C-f> :CtrlPTag<cr>
+nnoremap <silent> tg :TagbarToggle<CR>
+
+" DevIcons
+set encoding=utf8
+
+" Buffers
+nnoremap <C-w><Tab> :bnext<CR>:redraw<CR>:ls<CR>
+
+" Tabs
+nnoremap <Tab> :tabn<CR>:redraw<CR>
+
+" Nerdtree
+nnoremap <S-Tab> :NERDTreeToggle<CR>:wincmd p<CR>
+
+"" Remaps
+nnoremap <C-e> <C-u>
+nnoremap gr :grep! -R --exclude-dir=build --exclude-dir=.git --exclude=tags <cword> .<CR> :copen<CR>
