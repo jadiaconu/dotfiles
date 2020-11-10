@@ -152,6 +152,11 @@ let g:clang_user_options='|| exit 0'
 let g:clang_complete_auto = 1
 let g:clang_complete_copen = 1
 
+" Insert header in new src file
+autocmd bufnewfile *.js,*.c,*.ts so ~/.dotfiles/.headers/src_header.txt
+autocmd bufnewfile *.js,*.c,*.ts exe "1," . 8 . "g/* File Name :.*/s//* File Name : " .expand("%")
+autocmd bufnewfile *.js,*.c,*.ts  exe "1," . 8 . "g/* Creation Date :.*/s//* Creation Date : " .strftime("%d-%m-%Y")
+
 " Move lines around
 nnoremap <c-j> :m .+1<CR>==
 nnoremap <c-k> :m .-2<CR>==

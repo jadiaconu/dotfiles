@@ -1,0 +1,10 @@
+:insert
+/*
+ * File Name :
+ * Creation Date :
+ * Written by : Jean Diaconu <jdiaconu@cisco.com>
+ * Copyright (C) Cisco System Inc - All Rights Reserved
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential
+*/
+.
