@@ -100,7 +100,7 @@ Plug 'kchmck/vim-coffee-script'
 " Plug 'rip-rip/clang_complete'
 
 " Code
-Plug 'sheerun/vim-polyglot'
+" Plug 'sheerun/vim-polyglot'
 Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-surround'
 Plug 'vim-scripts/AutoClose'
@@ -128,8 +128,6 @@ Plug 'mxw/vim-jsx'
 Plug 'ngmy/vim-rubocop'
 Plug 'gabrielelana/vim-markdown'
 Plug 'airblade/vim-gitgutter'
-Plug 'jiangmiao/auto-pairs'
-Plug 'chiel92/vim-autoformat'
 Plug 'ryanoasis/vim-devicons'
 Plug 'preservim/tagbar'
 Plug 'mbbill/undotree'
@@ -210,4 +208,4 @@ nnoremap <S-Tab> :NERDTreeToggle<CR>:wincmd p<CR>
 
 "" Remaps
 nnoremap <C-e> <C-u>
-nnoremap gr :grep! -R --exclude-dir=build --exclude-dir=.git --exclude=tags <cword> .<CR> :copen<CR>
+nnoremap gr :grep! -R --exclude-dir=build --exclude-dir=node_modules --exclude-dir=.git --exclude=tags <cword> .<CR> :copen<CR>

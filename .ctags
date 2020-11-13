@@ -1,0 +1,6 @@
+--exclude=.git
+--exclude=log
+--exclude=tmp
+--exclude=node_modules
+--options=/Users/jdiaconu/.ctags_library/js/ctagsrc
+--options=/Users/jdiaconu/.ctags_library/ts/ctagsrc
