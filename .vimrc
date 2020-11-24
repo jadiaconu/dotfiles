@@ -93,6 +93,7 @@ Plug 'rust-lang/rust.vim'
 Plug 'leafgarland/typescript-vim'
 Plug 'elzr/vim-json'
 Plug 'chr4/nginx.vim'
+Plug 'peitalin/vim-jsx-typescript'
 Plug 'vim-scripts/c.vim'
 Plug 'kchmck/vim-coffee-script'
 
@@ -103,13 +104,18 @@ Plug 'kchmck/vim-coffee-script'
 " Plug 'sheerun/vim-polyglot'
 Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-surround'
-Plug 'vim-scripts/AutoClose'
+" Plug 'vim-scripts/AutoClose'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'junegunn/vim-easy-align'
 Plug 'hashivim/vim-terraform'
 Plug 'leafgarland/typescript-vim'
 Plug 'liuchengxu/vim-which-key'
 Plug 'rhysd/vim-clang-format'
+Plug 'frazrepo/vim-rainbow'
+Plug 'tpope/vim-repeat'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'dense-analysis/ale'
+
 
 " Tools
 Plug 'preservim/nerdtree'
@@ -136,19 +142,7 @@ call plug#end()
 
 " File open
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
-
-" JavaScript
-let g:javascript_plugin_jsdoc = 1
-let g:javascript_plugin_ngdoc = 1
-let g:javascript_plugin_flow = 1
-
 let g:netrw_localrmdir='rm -r'
-
-" C autocomplete
-let g:clang_library_path='/usr/lib/x86_64-linux-gnu/libclang-6.0.so'
-let g:clang_user_options='|| exit 0'
-let g:clang_complete_auto = 1
-let g:clang_complete_copen = 1
 
 " Insert header in new src file
 autocmd bufnewfile *.js,*.c,*.ts so ~/.dotfiles/.headers/src_header.txt
@@ -186,8 +180,16 @@ let g:NERDTreeGitStatusIndicatorMapCustom = {
             \ 'Unknown'   :'?',
             \ }
 
-" Swift
-let g:syntastic_swift_checkers = ['swiftpm', 'swiftlint']
+" JS, TS, ES
+let g:javascript_plugin_jsdoc = 1
+let g:javascript_plugin_ngdoc = 1
+let g:javascript_plugin_flow = 1
+
+" C autocomplete
+let g:clang_library_path='/usr/lib/x86_64-linux-gnu/libclang-6.0.so'
+let g:clang_user_options='|| exit 0'
+let g:clang_complete_auto = 1
+let g:clang_complete_copen = 1
 
 " CTags
 set tags=tags
@@ -206,6 +208,25 @@ nnoremap <Tab> :tabn<CR>:redraw<CR>
 " Nerdtree
 nnoremap <S-Tab> :NERDTreeToggle<CR>:wincmd p<CR>
 
+" Enable rainbow
+let g:rainbow_active = 1
+let g:rainbow_guifgs = ['RoyalBlue3', 'DarkOrange3', 'DarkOrchid3', 'FireBrick']
+let g:rainbow_ctermfgs = ['lightblue', 'lightgreen', 'yellow', 'red', 'magenta']
+
+" Vim Editor
+let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
+
+" Vim ALE
+let g:ale_fixers = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'javascript': ['eslint'],
+\   'typescript': ['eslint'],
+\}
+let g:ale_fix_on_save = 1
+let g:ale_completion_enabled = 1
+
 "" Remaps
 nnoremap <C-e> <C-u>
 nnoremap gr :grep! -R --exclude-dir=build --exclude-dir=node_modules --exclude-dir=.git --exclude=tags <cword> .<CR> :copen<CR>
+nnoremap gf :ALEFindReferences.<CR>
+nnoremap gd :ALEGoToDefinition.<CR>

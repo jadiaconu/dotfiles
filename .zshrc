@@ -130,6 +130,9 @@ export NVM_DIR="$HOME/.nvm"
 
 # RVM
 
+# Python
+alias python=/usr/local/bin/python3
+
 # Setting PATH for Python 2.7
 # The original version is saved in .bash_profile.pysave
 export PATH="/Library/Frameworks/Python.framework/Versions/2.7/bin:${PATH}"
