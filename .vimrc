@@ -116,7 +116,6 @@ Plug 'tpope/vim-repeat'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'dense-analysis/ale'
 
-
 " Tools
 Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -137,6 +136,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'ryanoasis/vim-devicons'
 Plug 'preservim/tagbar'
 Plug 'mbbill/undotree'
+Plug 'AndrewRadev/sideways.vim'
 
 call plug#end()
 
@@ -208,6 +208,10 @@ nnoremap <Tab> :tabn<CR>:redraw<CR>
 " Nerdtree
 nnoremap <S-Tab> :NERDTreeToggle<CR>:wincmd p<CR>
 
+" Sideways
+nnoremap <c-h> :SidewaysLeft<cr>
+nnoremap <c-l> :SidewaysRight<cr>
+
 " Enable rainbow
 let g:rainbow_active = 1
 let g:rainbow_guifgs = ['RoyalBlue3', 'DarkOrange3', 'DarkOrchid3', 'FireBrick']
@@ -224,6 +228,32 @@ let g:ale_fixers = {
 \}
 let g:ale_fix_on_save = 1
 let g:ale_completion_enabled = 1
+
+" Auto close
+function! ConditionalPairMap(open, close)
+  let line = getline('.')
+  let col = col('.')
+  if col < col('$') || stridx(line, a:close, col + 1) != -1
+    return a:open
+  else
+    return a:open . a:close . repeat("\<left>", len(a:close))
+  endif
+endfunction
+inoremap <expr> ( ConditionalPairMap('(', ')')
+inoremap <expr> [ ConditionalPairMap('[', ']')
+
+function! s:CloseBracket()
+    let line = getline('.')
+    if line =~# '^\s*\(struct\|class\|enum\) '
+        return "{\<Enter>}\<Esc>O"
+    elseif searchpair('(', '', ')', 'bmn', '', line('.'))
+        " Probably inside a function call. Close it off.
+        return "{\<Enter>})\<Esc>O"
+    else
+        return "{\<Enter>}\<Esc>O"
+    endif
+endfunction
+inoremap <expr> {<Enter> <SID>CloseBracket()
 
 "" Remaps
 nnoremap <C-e> <C-u>
