@@ -29,7 +29,7 @@ set hidden
 set autoread                       " Update buffer when file changes elsewhere
 set novisualbell
 set ttyfast
-set number                         " Display line number
+set relativenumber                         " Display line number
 set history=1000
 
 " Suffixes : these are the files we are unlikely to edit
