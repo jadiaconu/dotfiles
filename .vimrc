@@ -139,6 +139,7 @@ Plug 'mbbill/undotree'
 Plug 'AndrewRadev/sideways.vim'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+Plug 'neoclide/coc.nvim', { 'tag': 'tags/v0.0.78' }
 
 call plug#end()
 
@@ -231,11 +232,17 @@ let g:ale_fixers = {
 \}
 let g:ale_fix_on_save = 1
 let g:ale_completion_enabled = 1
+let g:ale_sign_error = '❌'
+let g:ale_sign_warning = '⚠️'
 
 " Vim Snippets
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" Go Auto Complete
+let g:go_def_mode='gopls'
+let g:go_info_mode='gopls'
 
 " Auto close
 function! ConditionalPairMap(open, close)
