@@ -139,7 +139,7 @@ Plug 'mbbill/undotree'
 Plug 'AndrewRadev/sideways.vim'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-Plug 'neoclide/coc.nvim', { 'tag': 'tags/v0.0.78' }
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()
 
@@ -223,7 +223,7 @@ let g:rainbow_ctermfgs = ['lightblue', 'lightgreen', 'yellow', 'red', 'magenta']
 " Vim Editor
 let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 
-" Vim ALE
+" Vim ALE - for linting
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'javascript': ['eslint'],
@@ -231,45 +231,53 @@ let g:ale_fixers = {
 \   'go': ['gofmt'],
 \}
 let g:ale_fix_on_save = 1
-let g:ale_completion_enabled = 1
+let g:ale_completion_enabled = 0
 let g:ale_sign_error = '❌'
 let g:ale_sign_warning = '⚠️'
+
+" Vim COC - for completion
+let g:coc_global_extensions = [
+\   'coc-snippets',
+\   'coc-pairs',
+\   'coc-css',
+\   'coc-html',
+\   'coc-go',
+\   'coc-yaml',
+\   'coc-tsserver',
+\   'coc-json'
+\]
 
 " Vim Snippets
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
-" Go Auto Complete
-let g:go_def_mode='gopls'
-let g:go_info_mode='gopls'
-
-" Auto close
-function! ConditionalPairMap(open, close)
-  let line = getline('.')
-  let col = col('.')
-  if col < col('$') || stridx(line, a:close, col + 1) != -1
-    return a:open
-  else
-    return a:open . a:close . repeat("\<left>", len(a:close))
-  endif
-endfunction
-inoremap <expr> ( ConditionalPairMap('(', ')')
-inoremap <expr> [ ConditionalPairMap('[', ']')
-
-function! s:CloseBracket()
-    let line = getline('.')
-    if line =~# '^\s*\(struct\|class\|enum\) '
-        return "{\<Enter>}\<Esc>O"
-    elseif searchpair('(', '', ')', 'bmn', '', line('.'))
-        " Probably inside a function call. Close it off.
-        return "{\<Enter>})\<Esc>O"
-    else
-        return "{\<Enter>}\<Esc>O"
-    endif
-endfunction
-inoremap <expr> {<Enter> <SID>CloseBracket()
-
+" " Auto close
+" function! ConditionalPairMap(open, close)
+"   let line = getline('.')
+"   let col = col('.')
+"   if col < col('$') || stridx(line, a:close, col + 1) != -1
+"     return a:open
+"   else
+"     return a:open . a:close . repeat("\<left>", len(a:close))
+"   endif
+" endfunction
+" inoremap <expr> ( ConditionalPairMap('(', ')')
+" inoremap <expr> [ ConditionalPairMap('[', ']')
+"
+" function! s:CloseBracket()
+"     let line = getline('.')
+"     if line =~# '^\s*\(struct\|class\|enum\) '
+"         return "{\<Enter>}\<Esc>O"
+"     elseif searchpair('(', '', ')', 'bmn', '', line('.'))
+"         " Probably inside a function call. Close it off.
+"         return "{\<Enter>})\<Esc>O"
+"     else
+"         return "{\<Enter>}\<Esc>O"
+"     endif
+" endfunction
+" inoremap <expr> {<Enter> <SID>CloseBracket()
+"
 "" Remaps
 nnoremap <C-e> <C-u>
 nnoremap gr :grep! -R --exclude-dir=build --exclude-dir=node_modules --exclude-dir=.git --exclude=tags <cword> .<CR> :copen<CR>
