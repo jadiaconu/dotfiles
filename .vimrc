@@ -22,6 +22,9 @@ set shiftwidth=4
 set softtabstop=4
 set expandtab
 
+" Split on the right
+set splitright
+
 " Global settings
 set incsearch
 set modelines=0
@@ -280,6 +283,6 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 "
 "" Remaps
 nnoremap <C-e> <C-u>
-nnoremap gr :grep! -R --exclude-dir=build --exclude-dir=node_modules --exclude-dir=.git --exclude=tags <cword> .<CR> :copen<CR>
+nnoremap gr :grep! -R --exclude-dir=build --exclude-dir=node_modules --exclude-dir=.git --exclude=tags <cword> .<CR> :botright copen<CR>
 nnoremap gf :ALEFindReferences.<CR>
 nnoremap gd :ALEGoToDefinition.<CR>
