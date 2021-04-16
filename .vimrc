@@ -245,6 +245,7 @@ let g:coc_global_extensions = [
 \   'coc-css',
 \   'coc-html',
 \   'coc-go',
+\   'coc-tabnine',
 \   'coc-yaml',
 \   'coc-tsserver',
 \   'coc-json'
@@ -283,6 +284,6 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 "
 "" Remaps
 nnoremap <C-e> <C-u>
-nnoremap gr :grep! -R --exclude-dir=build --exclude-dir=node_modules --exclude-dir=.git --exclude=tags <cword> .<CR> :botright copen<CR>
+nnoremap gr :grep! -RI --exclude-dir=build --exclude-dir=node_modules --exclude-dir=vendor --exclude-dir=build --exclude-dir=public --exclude-dir=.git --exclude=tags  <cword> .<CR> :botright copen<CR>
 nnoremap gf :ALEFindReferences.<CR>
 nnoremap gd :ALEGoToDefinition.<CR>
