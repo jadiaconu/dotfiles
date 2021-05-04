@@ -1,20 +1,15 @@
 filetype plugin indent on
 set term=xterm-256color
-
-" Visual aspect
-colorscheme xoria256
-
-" Spelling
-set spelllang=en_us
-set spell
-
-" After setting the xoria256 colorscheme, the background is incorrectly reset
-" to 'light', this is a workaround to set it to 'dark'.
 syntax off
 set background=dark
 syntax enable
 set backspace=indent,eol,start
 set omnifunc=syntaxcomplete#Complete
+
+
+" Spelling
+set spelllang=en_us
+set spell
 
 " Insert spaces instead of tab
 set tabstop=4
@@ -146,6 +141,9 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'christoomey/vim-tmux-navigator'
 
 call plug#end()
+
+" Visual aspect
+colorscheme xoria256
 
 " File open
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
