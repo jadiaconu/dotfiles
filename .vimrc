@@ -143,6 +143,7 @@ Plug 'AndrewRadev/sideways.vim'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'christoomey/vim-tmux-navigator'
 
 call plug#end()
 
@@ -209,7 +210,7 @@ set encoding=utf8
 nnoremap <C-w><Tab> :bnext<CR>:redraw<CR>:ls<CR>
 
 " Tabs
-nnoremap <Tab> :tabn<CR>:redraw<CR>
+nnoremap <Tab> :NERDTreeFind<CR>:tabn<CR>:redraw<CR>
 
 " Nerdtree
 nnoremap <S-Tab> :NERDTreeToggle<CR>:wincmd p<CR>
@@ -287,3 +288,12 @@ nnoremap <C-e> <C-u>
 nnoremap gr :grep! -RI --exclude-dir=build --exclude-dir=node_modules --exclude-dir=vendor --exclude-dir=build --exclude-dir=public --exclude-dir=.git --exclude=tags  <cword> .<CR> :botright copen<CR>
 nnoremap gf :ALEFindReferences.<CR>
 nnoremap gd :ALEGoToDefinition.<CR>
+
+"" Tmux Navigation
+let g:tmux_navigator_no_mappings = 1
+
+nnoremap <silent> <C-Left> :TmuxNavigateLeft<cr>
+nnoremap <silent> <C-Down> :TmuxNavigateDown<cr>
+nnoremap <silent> <C-Up> :TmuxNavigateUp<cr>
+nnoremap <silent> <C-Right> :TmuxNavigateRight<cr>
+nnoremap <silent> <C-\> :TmuxNavigatePrevious<cr>
