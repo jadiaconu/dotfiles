@@ -139,6 +139,7 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'shime/vim-livedown'
 
 call plug#end()
 
@@ -207,11 +208,10 @@ set encoding=utf8
 " Buffers
 nnoremap <C-w><Tab> :bnext<CR>:redraw<CR>:ls<CR>
 
-" Tabs
-nnoremap <Tab> :NERDTreeFind<CR>:tabn<CR>:redraw<CR>
-
 " Nerdtree
+nnoremap <Tab> :NERDTreeFind<CR>:tabn<CR>:redraw<CR>
 nnoremap <S-Tab> :NERDTreeToggle<CR>:wincmd p<CR>
+let NERDTreeShowHidden=1
 
 " Sideways
 nnoremap <c-h> :SidewaysLeft<cr>
@@ -281,11 +281,16 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 " endfunction
 " inoremap <expr> {<Enter> <SID>CloseBracket()
 "
+
+"" Livedown MD Preview
+nmap nm :LivedownToggle<CR>
+
 "" Remaps
 nnoremap <C-e> <C-u>
 nnoremap gr :grep! -RI --exclude-dir=build --exclude-dir=node_modules --exclude-dir=vendor --exclude-dir=build --exclude-dir=public --exclude-dir=.git --exclude=tags  <cword> .<CR> :botright copen<CR>
 nnoremap gf :ALEFindReferences.<CR>
 nnoremap gd :ALEGoToDefinition.<CR>
+nnoremap gh :0Glog<CR>
 
 "" Tmux Navigation
 let g:tmux_navigator_no_mappings = 1
