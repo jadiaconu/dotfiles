@@ -28,8 +28,8 @@ indent_style = tab
 indent_size = 4
 
 [*.py]
-indent_style = tab
 indent_size = 4
+indent_style = space
 
 [{Dockerfile,Makefile, *.yml}]
 indent_style = space
