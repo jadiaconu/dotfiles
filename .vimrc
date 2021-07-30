@@ -230,7 +230,18 @@ let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'javascript': ['eslint'],
 \   'typescript': ['eslint'],
+\   'cpp': ['clang-format'],
+\   'java':['uncrustify'],
+\   'python': ['yapf'],
 \   'go': ['gofmt'],
+\   'css':['prettier'],
+\   'less':['prettier'],
+\   'scss':['prettier'],
+\   'json':['prettier'],
+\   'graphql':['prettier'],
+\   'markdown':['prettier'],
+\   'vue':['prettier'],
+\   'html':['prettier']
 \}
 let g:ale_fix_on_save = 1
 let g:ale_completion_enabled = 0
@@ -247,7 +258,10 @@ let g:coc_global_extensions = [
 \   'coc-tabnine',
 \   'coc-yaml',
 \   'coc-tsserver',
-\   'coc-json'
+\   'coc-json',
+\   'coc-groovy',
+\   'coc-python',
+\   'coc-clangd'
 \]
 
 " Vim Snippets
@@ -291,6 +305,8 @@ nnoremap gr :grep! -RI --exclude-dir=build --exclude-dir=node_modules --exclude-
 nnoremap gf :ALEFindReferences.<CR>
 nnoremap gd :ALEGoToDefinition.<CR>
 nnoremap gh :0Glog<CR>
+" Reselect pasted text
+nnoremap gp `[v`]
 
 "" Tmux Navigation
 let g:tmux_navigator_no_mappings = 1
