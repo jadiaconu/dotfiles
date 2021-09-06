@@ -149,6 +149,10 @@ export PATH="/usr/local/opt/curl/bin:$PATH"
 # Setting PATH for Python 3
 export PATH=/usr/local/share/python:$PATH
 
+# Setting PATH for JDK
+export JAVA_HOME="/usr/local/opt/openjdk@11"
+export PATH="$JAVA_HOME/bin:$PATH"
+
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
 # Navigation
@@ -156,6 +160,12 @@ bindkey "^[D" backward-word
 bindkey "^[C" forward-word
 bindkey "^[a" beginning-of-line
 bindkey "^[e" end-of-line
+
+# Docker
+export DOCKER_TLS_VERIFY="1"
+export DOCKER_HOST="tcp://localhost:2376"
+export DOCKER_CERT_PATH="$HOME/.docker/machine/machines/default"
+export DOCKER_MACHINE_NAME="default"
 
 # History
 autoload -U history-search-end

@@ -14,3 +14,8 @@ build/*
 xcuserdata
 project.xcworkspace
 .svn
+.ccls
+.ccls-cache
+.cache
+.metadata
+jdt.ls-java-project

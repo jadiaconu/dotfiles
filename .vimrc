@@ -95,9 +95,6 @@ Plug 'peitalin/vim-jsx-typescript'
 Plug 'vim-scripts/c.vim'
 Plug 'kchmck/vim-coffee-script'
 
-" Completion -> conflict with ctags
-" Plug 'rip-rip/clang_complete'
-
 " Code
 " Plug 'sheerun/vim-polyglot'
 Plug 'tomtom/tcomment_vim'
@@ -108,7 +105,6 @@ Plug 'junegunn/vim-easy-align'
 Plug 'hashivim/vim-terraform'
 Plug 'leafgarland/typescript-vim'
 Plug 'liuchengxu/vim-which-key'
-Plug 'rhysd/vim-clang-format'
 Plug 'frazrepo/vim-rainbow'
 Plug 'tpope/vim-repeat'
 Plug 'editorconfig/editorconfig-vim'
@@ -191,12 +187,6 @@ let g:javascript_plugin_jsdoc = 1
 let g:javascript_plugin_ngdoc = 1
 let g:javascript_plugin_flow = 1
 
-" C autocomplete
-let g:clang_library_path='/usr/lib/x86_64-linux-gnu/libclang-6.0.so'
-let g:clang_user_options='|| exit 0'
-let g:clang_complete_auto = 1
-let g:clang_complete_copen = 1
-
 " CTags
 set tags=tags
 nnoremap <C-f> :CtrlPTag<cr>
@@ -231,7 +221,7 @@ let g:ale_fixers = {
 \   'javascript': ['eslint'],
 \   'typescript': ['eslint'],
 \   'cpp': ['clang-format'],
-\   'java':['uncrustify'],
+\   'java':['google_java_format'],
 \   'python': ['yapf'],
 \   'go': ['gofmt'],
 \   'css':['prettier'],
@@ -243,10 +233,22 @@ let g:ale_fixers = {
 \   'vue':['prettier'],
 \   'html':['prettier']
 \}
+let g:ale_linters = {
+\   'java':['eclipselsp'],
+\   'cpp':['ccls'],
+\}
 let g:ale_fix_on_save = 1
 let g:ale_completion_enabled = 0
 let g:ale_sign_error = '❌'
 let g:ale_sign_warning = '⚠️'
+
+" ALE Java settings
+let g:ale_java_eclipselsp_path = '$HOME/.config/coc/extensions/coc-java-data/server'
+let g:ale_java_eclipse_config_path = '$HOME/.config/coc/extensions/coc-java-data/server/config_mac'
+let g:ale_java_eclipselsp_javaagent = '/Users/jdiaconu/.java/lombok.jar'
+
+" ALE C++ Settings
+let g:ale_cpp_ccls_init_options = {}
 
 " Vim COC - for completion
 let g:coc_global_extensions = [
@@ -259,9 +261,9 @@ let g:coc_global_extensions = [
 \   'coc-yaml',
 \   'coc-tsserver',
 \   'coc-json',
-\   'coc-groovy',
 \   'coc-python',
-\   'coc-clangd'
+\   'coc-clangd',
+\   'coc-java'
 \]
 
 " Vim Snippets
@@ -296,19 +298,19 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 " inoremap <expr> {<Enter> <SID>CloseBracket()
 "
 
-"" Livedown MD Preview
+" Livedown MD Preview
 nmap nm :LivedownToggle<CR>
 
-"" Remaps
+" Remaps
 nnoremap <C-e> <C-u>
-nnoremap gr :grep! -RI --exclude-dir=build --exclude-dir=node_modules --exclude-dir=vendor --exclude-dir=build --exclude-dir=public --exclude-dir=.git --exclude=tags  <cword> .<CR> :botright copen<CR>
+nnoremap gr :grep! -RI --exclude-dir=.ccls-cache --exclude-dir=.cache --exclude-dir=.ccls --exclude-dir=build --exclude-dir=node_modules --exclude-dir=vendor --exclude-dir=build --exclude-dir=public --exclude-dir=.git --exclude=tags  <cword> .<CR> :botright copen<CR>
 nnoremap gf :ALEFindReferences.<CR>
 nnoremap gd :ALEGoToDefinition.<CR>
 nnoremap gh :0Glog<CR>
 " Reselect pasted text
 nnoremap gp `[v`]
 
-"" Tmux Navigation
+" Tmux Navigation
 let g:tmux_navigator_no_mappings = 1
 
 nnoremap <silent> <C-Left> :TmuxNavigateLeft<cr>

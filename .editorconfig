@@ -31,10 +31,14 @@ indent_size = 4
 indent_size = 4
 indent_style = space
 
+[*.{cpp, cxx}]
+indent_size = 2
+indent_style = space
+
 [{Dockerfile,Makefile}]
 indent_style = space
 indent_size = 2
 
-[*.groovy]
+[*.{groovy, jave}]
 indent_style = space
 indent_size = 2
