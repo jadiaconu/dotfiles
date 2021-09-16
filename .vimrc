@@ -1,11 +1,7 @@
 filetype plugin indent on
 set term=xterm-256color
-syntax off
 set background=dark
 syntax enable
-set backspace=indent,eol,start
-set omnifunc=syntaxcomplete#Complete
-
 
 " Spelling
 set spelllang=en_us
@@ -84,16 +80,6 @@ set listchars+=nbsp:⣿
 call plug#begin('~/.vim/plugged')
 
 " Language
-Plug 'fatih/vim-go'
-Plug 'keith/swift.vim'
-Plug 'pangloss/vim-javascript'
-Plug 'rust-lang/rust.vim'
-Plug 'leafgarland/typescript-vim'
-Plug 'elzr/vim-json'
-Plug 'chr4/nginx.vim'
-Plug 'peitalin/vim-jsx-typescript'
-Plug 'vim-scripts/c.vim'
-Plug 'kchmck/vim-coffee-script'
 
 " Code
 " Plug 'sheerun/vim-polyglot'
@@ -102,9 +88,6 @@ Plug 'tpope/vim-surround'
 " Plug 'vim-scripts/AutoClose'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'junegunn/vim-easy-align'
-Plug 'hashivim/vim-terraform'
-Plug 'leafgarland/typescript-vim'
-Plug 'liuchengxu/vim-which-key'
 Plug 'frazrepo/vim-rainbow'
 Plug 'tpope/vim-repeat'
 Plug 'editorconfig/editorconfig-vim'
@@ -115,17 +98,11 @@ Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'itchyny/lightline.vim'
-Plug 'mustache/vim-mustache-handlebars'
 Plug 'tpope/vim-fugitive'
-Plug 'mileszs/ack.vim'
 Plug 'terryma/vim-multiple-cursors'
-Plug 'Valloric/ListToggle'
 Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-haml'
 Plug 'rhysd/vim-grammarous'
-Plug 'mxw/vim-jsx'
-Plug 'ngmy/vim-rubocop'
-Plug 'gabrielelana/vim-markdown'
 Plug 'airblade/vim-gitgutter'
 Plug 'ryanoasis/vim-devicons'
 Plug 'preservim/tagbar'
@@ -147,9 +124,9 @@ let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclu
 let g:netrw_localrmdir='rm -r'
 
 " Insert header in new src file
-autocmd bufnewfile *.js,*.c,*.ts so ~/.dotfiles/.headers/src_header.txt
-autocmd bufnewfile *.js,*.c,*.ts exe "1," . 8 . "g/* File Name :.*/s//* File Name : " .expand("%")
-autocmd bufnewfile *.js,*.c,*.ts  exe "1," . 8 . "g/* Creation Date :.*/s//* Creation Date : " .strftime("%d-%m-%Y")
+autocmd bufnewfile *.js,*.c,*.ts,*.go,*.h,*.cpp,*.cc so ~/.dotfiles/.headers/src_header.txt
+autocmd bufnewfile *.js,*.c,*.ts,*.go,*.h,*.cpp,*.cc exe "1," . 8 . "g/* File Name :.*/s//* File Name : " .expand("%")
+autocmd bufnewfile *.js,*.c,*.ts,*.go,*.h,*.cpp,*.cc  exe "1," . 8 . "g/* Creation Date :.*/s//* Creation Date : " .strftime("%d-%m-%Y")
 
 " Move lines around
 nnoremap <c-j> :m .+1<CR>==
@@ -201,6 +178,8 @@ nnoremap <C-w><Tab> :bnext<CR>:redraw<CR>:ls<CR>
 " Nerdtree
 nnoremap <Tab> :NERDTreeFind<CR>:tabn<CR>:redraw<CR>
 nnoremap <S-Tab> :NERDTreeToggle<CR>:wincmd p<CR>
+set wildignore+=*.pyc,*.o,*.obj,*.svn,*.swp,*.class,*.hg,*.DS_Store,*.min.*,*.swo
+let NERDTreeRespectWildIgnore=1
 let NERDTreeShowHidden=1
 
 " Sideways
@@ -218,8 +197,9 @@ let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 " Vim ALE - for linting
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
-\   'javascript': ['eslint'],
-\   'typescript': ['eslint'],
+\   'javascript': ['eslint', 'prettier'],
+\   'typescript': ['eslint', 'prettier'],
+\   'typescriptreact': ['eslint', 'prettier'],
 \   'cpp': ['clang-format'],
 \   'java':['google_java_format'],
 \   'python': ['yapf'],
@@ -306,7 +286,7 @@ nnoremap <C-e> <C-u>
 nnoremap gr :grep! -RI --exclude-dir=.ccls-cache --exclude-dir=.cache --exclude-dir=.ccls --exclude-dir=build --exclude-dir=node_modules --exclude-dir=vendor --exclude-dir=build --exclude-dir=public --exclude-dir=.git --exclude=tags  <cword> .<CR> :botright copen<CR>
 nnoremap gf :ALEFindReferences.<CR>
 nnoremap gd :ALEGoToDefinition.<CR>
-nnoremap gh :0Glog<CR>
+nnoremap gh :0Gclog<CR>
 " Reselect pasted text
 nnoremap gp `[v`]
 
