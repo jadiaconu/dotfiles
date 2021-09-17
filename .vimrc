@@ -119,6 +119,18 @@ call plug#end()
 " Visual aspect
 colorscheme xoria256
 
+" Lightline
+let g:lightline = {
+      \ 'colorscheme': 'wombat',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'FugitiveHead'
+      \ },
+      \ }
+
 " File open
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 let g:netrw_localrmdir='rm -r'
@@ -287,6 +299,7 @@ nnoremap gr :grep! -RI --exclude-dir=.ccls-cache --exclude-dir=.cache --exclude-
 nnoremap gf :ALEFindReferences.<CR>
 nnoremap gd :ALEGoToDefinition.<CR>
 nnoremap gh :0Gclog<CR>
+nnoremap gj :Gdiffsplit<CR>
 " Reselect pasted text
 nnoremap gp `[v`]
 
