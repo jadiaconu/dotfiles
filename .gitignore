@@ -22,3 +22,4 @@ project.xcworkspace
 jdt.ls-java-project
 .settings
 .project
+.fresh.conf
