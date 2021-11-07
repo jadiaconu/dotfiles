@@ -242,6 +242,23 @@ let g:ale_java_eclipselsp_javaagent = '/Users/jdiaconu/.java/lombok.jar'
 " ALE C++ Settings
 let g:ale_cpp_ccls_init_options = {}
 
+" ALE Toggle Fix on save
+command! Toggle call s:ale_toggle('buffer')
+
+function! s:ale_toggle(...)
+    let s:fckALEStatus = {}
+    let s:fckALEStatus['global'] = get(g:, 'ale_fix_on_save', 0)
+    let s:fckALEStatus['buffer'] = get(b:, 'ale_fix_on_save', s:fckALEStatus['global'])
+    let s:fckCurrentScope = get(a:, 1, 'global')
+    if (s:fckALEStatus[s:fckCurrentScope] == 1)
+        let s:fckALEStatus[s:fckCurrentScope]=0
+    else
+        let s:fckALEStatus[s:fckCurrentScope]=1
+    endif
+    let g:ale_fix_on_save=s:fckALEStatus['global']
+    let b:ale_fix_on_save=s:fckALEStatus['buffer']
+endfunction
+
 " Vim COC - for completion
 let g:coc_global_extensions = [
 \   'coc-snippets',
