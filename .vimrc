@@ -85,10 +85,8 @@ call plug#begin('~/.vim/plugged')
 " Plug 'sheerun/vim-polyglot'
 Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-surround'
-" Plug 'vim-scripts/AutoClose'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'junegunn/vim-easy-align'
-Plug 'frazrepo/vim-rainbow'
 Plug 'tpope/vim-repeat'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'dense-analysis/ale'
@@ -108,8 +106,6 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'preservim/tagbar'
 Plug 'mbbill/undotree'
 Plug 'AndrewRadev/sideways.vim'
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'shime/vim-livedown'
@@ -223,11 +219,14 @@ let g:ale_fixers = {
 \   'graphql':['prettier'],
 \   'markdown':['prettier'],
 \   'vue':['prettier'],
-\   'html':['prettier']
+\   'html':['prettier'],
+\   'xml':['prettier'],
+\   'kotlin':['ktlint']
 \}
 let g:ale_linters = {
 \   'java':['eclipselsp'],
 \   'cpp':['ccls'],
+\   'kotlin':['languageserver']
 \}
 let g:ale_fix_on_save = 1
 let g:ale_completion_enabled = 0
@@ -272,7 +271,9 @@ let g:coc_global_extensions = [
 \   'coc-json',
 \   'coc-python',
 \   'coc-clangd',
-\   'coc-java'
+\   'coc-java',
+\   'coc-xml',
+\   'coc-kotlin'
 \]
 
 " Vim Snippets
