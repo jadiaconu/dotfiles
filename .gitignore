@@ -24,3 +24,4 @@ jdt.ls-java-project
 .project
 .fresh.conf
 .idea
+geckodriver.log
