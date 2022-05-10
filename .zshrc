@@ -149,10 +149,6 @@ export PATH="/usr/local/opt/curl/bin:$PATH"
 # Setting PATH for Python 3
 export PATH=/usr/local/share/python:$PATH
 
-# Setting PATH for JDK
-export JAVA_HOME="$(/usr/libexec/java_home -v15)"
-export PATH="$JAVA_HOME/bin:$PATH"
-
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
 # Navigation
@@ -167,3 +163,7 @@ zle -N history-beginning-search-backward-end history-search-end
 zle -N history-beginning-search-forward-end history-search-end
 bindkey "^[[A" history-beginning-search-backward-end
 bindkey "^[[B" history-beginning-search-forward-end
+
+# SDK Man
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"

@@ -20,11 +20,12 @@ set splitright
 set incsearch
 set modelines=0
 set hidden
-set autoread                       " Update buffer when file changes elsewhere
+set autoread                               " Update buffer when file changes elsewhere
 set novisualbell
 set ttyfast
 set relativenumber                         " Display line number
 set history=1000
+set ttimeoutlen=100
 
 " Suffixes : these are the files we are unlikely to edit
 set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.out,.toc
@@ -92,9 +93,9 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'dense-analysis/ale'
 
 " Tools
+Plug 'ctrlpvim/ctrlp.vim'
 Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'ctrlpvim/ctrlp.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'terryma/vim-multiple-cursors'
@@ -109,6 +110,7 @@ Plug 'AndrewRadev/sideways.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'shime/vim-livedown'
+Plug 'tpope/vim-abolish'
 
 call plug#end()
 
@@ -182,6 +184,8 @@ set encoding=utf8
 
 " Buffers
 nnoremap <C-w><Tab> :bnext<CR>:redraw<CR>:ls<CR>
+nnoremap <silent> <C-x> :CtrlPBuffer<CR>
+command Bd :up | %bd | e#
 
 " Nerdtree
 nnoremap <Tab> :NERDTreeFind<CR>:tabn<CR>:redraw<CR>
@@ -354,7 +358,7 @@ nmap nm :LivedownToggle<CR>
 
 " Remaps
 nnoremap <C-e> <C-u>
-nnoremap gr :grep! -RI --exclude-dir=.ccls-cache --exclude-dir=.cache --exclude-dir=.ccls --exclude-dir=build --exclude-dir=node_modules --exclude-dir=vendor --exclude-dir=build --exclude-dir=public --exclude-dir=.git --exclude=tags  <cword> .<CR> :botright copen<CR>
+nnoremap gr :grep! -RI --exclude-dir=.ccls-cache --exclude-dir=.cache --exclude-dir=.ccls --exclude-dir=build --exclude-dir=node_modules --exclude-dir=vendor --exclude-dir=build --exclude-dir=public --exclude-dir=.git --exclude=tags --exclude-dir=.metadata <cword> .<CR> :botright copen<CR>
 nnoremap gf :ALEFindReferences.<CR>
 nnoremap gd :ALEGoToDefinition.<CR>
 nnoremap gh :0Gclog<CR>

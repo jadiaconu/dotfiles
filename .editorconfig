@@ -4,8 +4,8 @@ root = true
 end_of_line = lf
 insert_final_newline = true
 charset = utf-8
-indent_style = space
 indent_size = 4
+indent_style = space
 
 [*.{ts,tsx,json,sh}]
 indent_style = space
@@ -39,10 +39,14 @@ indent_style = space
 indent_size = 2
 indent_style = space
 
-[{Dockerfile,Makefile}]
+[Dockerfile]
 indent_style = space
 indent_size = 2
 
-[*.{groovy, jave}]
+[Makefile]
+indent_style = tab
+indent_size = 4
+
+[*.{groovy, java}]
 indent_style = space
 indent_size = 2
