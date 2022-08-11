@@ -167,3 +167,9 @@ bindkey "^[[B" history-beginning-search-forward-end
 # SDK Man
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/jdiaconu/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/jdiaconu/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/jdiaconu/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/jdiaconu/Downloads/google-cloud-sdk/completion.zsh.inc'; fi

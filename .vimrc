@@ -111,6 +111,9 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'shime/vim-livedown'
 Plug 'tpope/vim-abolish'
+Plug 'aklt/plantuml-syntax'
+Plug 'tyru/open-browser.vim'
+Plug 'weirongxu/plantuml-previewer.vim'
 
 call plug#end()
 
@@ -277,7 +280,8 @@ let g:coc_global_extensions = [
 \   'coc-clangd',
 \   'coc-java',
 \   'coc-xml',
-\   'coc-kotlin'
+\   'coc-kotlin',
+\   'coc-markdownlint'
 \]
 
 " Vim Snippets
