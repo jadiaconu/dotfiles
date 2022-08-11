@@ -80,6 +80,9 @@ set listchars+=nbsp:⣿
 " Plugins
 call plug#begin('~/.vim/plugged')
 
+" Theme
+Plug 'sonph/onehalf', { 'rtp': 'vim' }
+
 " Language
 
 " Code
@@ -107,7 +110,7 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'preservim/tagbar'
 Plug 'mbbill/undotree'
 Plug 'AndrewRadev/sideways.vim'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc.nvim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'shime/vim-livedown'
 Plug 'tpope/vim-abolish'
@@ -118,11 +121,12 @@ Plug 'weirongxu/plantuml-previewer.vim'
 call plug#end()
 
 " Visual aspect
-colorscheme xoria256
+colorscheme onehalfdark
+set t_Co=256
 
 " Lightline
 let g:lightline = {
-      \ 'colorscheme': 'wombat',
+      \ 'colorscheme': 'onehalfdark',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
@@ -359,6 +363,9 @@ endfunction
 
 " Livedown MD Preview
 nmap nm :LivedownToggle<CR>
+
+" COC Autocomplete
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 " Remaps
 nnoremap <C-e> <C-u>
