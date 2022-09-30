@@ -80,9 +80,6 @@ set listchars+=nbsp:⣿
 " Plugins
 call plug#begin('~/.vim/plugged')
 
-" Theme
-Plug 'sonph/onehalf', { 'rtp': 'vim' }
-
 " Language
 
 " Code
@@ -121,12 +118,11 @@ Plug 'weirongxu/plantuml-previewer.vim'
 call plug#end()
 
 " Visual aspect
-colorscheme onehalfdark
-set t_Co=256
+colorscheme xoria256
 
 " Lightline
 let g:lightline = {
-      \ 'colorscheme': 'onehalfdark',
+      \ 'colorscheme': 'wombat',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
@@ -366,6 +362,7 @@ nmap nm :LivedownToggle<CR>
 
 " COC Autocomplete
 inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+highlight CocFloating ctermbg=Gray
 
 " Remaps
 nnoremap <C-e> <C-u>
