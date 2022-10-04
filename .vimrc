@@ -20,15 +20,15 @@ set splitright
 set incsearch
 set modelines=0
 set hidden
-set autoread                               " Update buffer when file changes elsewhere
+set autoread                       " Update buffer when file changes elsewhere
 set novisualbell
 set ttyfast
-set relativenumber                         " Display line number
+set relativenumber                 " Display line number
 set history=1000
 set ttimeoutlen=100
 
 " Suffixes : these are the files we are unlikely to edit
-set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.out,.toc
+set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.out,.toc,.swn,.swo
 
 set ruler                          " Show cursor position at all times
 set textwidth=0                    " Don't wrap words by default
@@ -45,10 +45,10 @@ endif
 
 " GUI Settings
 if has("gui_running")
-  set guioptions-=m " Remove menu bar
-  set guioptions-=T " Remove toolbar
-  set guioptions-=r " Remove right-hand scroll bar
-  set guioptions-=L " Remove left-hand scroll bar when vertical split
+  set guioptions-=m                 " Remove menu bar
+  set guioptions-=T                 " Remove toolbar
+  set guioptions-=r                 " Remove right-hand scroll bar
+  set guioptions-=L                 " Remove left-hand scroll bar when vertical split
 endif
 
 " Search settings
@@ -65,8 +65,8 @@ set sidescrolloff=2
 " Tab complete menu
 set wildmode=longest:full
 set wildmenu
-set wildignore=*.o,*.a,*.so,*.ko,*~,*.swp,*.pyc,*.dll,tags,*.o.*
-set wildignore+=.git/,.hg/,.svn/
+set wildignore=*.o,*.a,*.so,*.ko,*~,*.swp,*.pyc,*.dll,tags,*.o.*,*.swo,*.swn,*.log
+set wildignore+=.git/,.hg/,.svn/,build/
 
 " Indentation
 set list
@@ -137,9 +137,9 @@ let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclu
 let g:netrw_localrmdir='rm -r'
 
 " Insert header in new src file
-autocmd bufnewfile *.js,*.c,*.ts,*.go,*.h,*.cpp,*.cc so ~/.dotfiles/.headers/src_header.txt
-autocmd bufnewfile *.js,*.c,*.ts,*.go,*.h,*.cpp,*.cc exe "1," . 8 . "g/* File Name :.*/s//* File Name : " .expand("%")
-autocmd bufnewfile *.js,*.c,*.ts,*.go,*.h,*.cpp,*.cc  exe "1," . 8 . "g/* Creation Date :.*/s//* Creation Date : " .strftime("%d-%m-%Y")
+autocmd bufnewfile *.js,*.c,*.ts,*.go,*.h,*.cpp,*.cc,*.java,*.tsx so ~/.dotfiles/.headers/src_header.txt
+autocmd bufnewfile *.js,*.c,*.ts,*.go,*.h,*.cpp,*.cc,*.java,*.tsx exe "1," . 8 . "g/* File Name :.*/s//* File Name : " .expand("%")
+autocmd bufnewfile *.js,*.c,*.ts,*.go,*.h,*.cpp,*.cc,*.java,*.tsx exe "1," . 8 . "g/* Creation Date :.*/s//* Creation Date : " .strftime("%d-%m-%Y")
 
 " Move lines around
 nnoremap <c-j> :m .+1<CR>==
@@ -150,9 +150,6 @@ vnoremap <c-j> :m '>+1<CR>gv=gv
 vnoremap <c-k> :m '<-2<CR>gv=gv
 
 " Nerd Tree
-" autocmd vimenter * NERDTree
-" autocmd StdinReadPre * let s:std_in=1
-" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
@@ -329,33 +326,6 @@ function! s:add_mappings() abort
   11copen
   wincmd p
 endfunction
-
-" " Auto close
-" function! ConditionalPairMap(open, close)
-"   let line = getline('.')
-"   let col = col('.')
-"   if col < col('$') || stridx(line, a:close, col + 1) != -1
-"     return a:open
-"   else
-"     return a:open . a:close . repeat("\<left>", len(a:close))
-"   endif
-" endfunction
-" inoremap <expr> ( ConditionalPairMap('(', ')')
-" inoremap <expr> [ ConditionalPairMap('[', ']')
-"
-" function! s:CloseBracket()
-"     let line = getline('.')
-"     if line =~# '^\s*\(struct\|class\|enum\) '
-"         return "{\<Enter>}\<Esc>O"
-"     elseif searchpair('(', '', ')', 'bmn', '', line('.'))
-"         " Probably inside a function call. Close it off.
-"         return "{\<Enter>})\<Esc>O"
-"     else
-"         return "{\<Enter>}\<Esc>O"
-"     endif
-" endfunction
-" inoremap <expr> {<Enter> <SID>CloseBracket()
-"
 
 " Livedown MD Preview
 nmap nm :LivedownToggle<CR>

@@ -113,15 +113,8 @@ export LANG=en_US.UTF-8
 # local ret_status="%(!.%{%F{yellow}%}.)$USER@%{$fg[blue]%}%M %(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ %s)"
 # PROMPT='${ret_status}%{$fg_bold[green]%}%p %{$fg[cyan]%}%c %{$fg_bold[blue]%}$(git_prompt_info)%{$fg_bold[blue]%}$(svn_prompt_info)%{$reset_color%}'
 
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+# Android
 export PATH="$PATH:$HOME/Library/Android/sdk/platform-tools"
-
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
-alias ctags='/usr/local/bin/ctags'
-
-export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
-# Finished adapting your PATH environment variable for use with MacPorts.
 
 # NVM
 export NVM_DIR="$HOME/.nvm"
@@ -132,22 +125,18 @@ export NVM_DIR="$HOME/.nvm"
 
 # GO
 export GOPATH=$HOME/go
-export GOROOT=/usr/local/opt/go/libexec
+export GOROOT=/opt/homebrew/opt/go/libexec
 export GOBIN=$GOPATH/bin
 export PATH=$PATH:$GOPATH
 export PATH=$PATH:$GOBIN
 export PATH=$PATH:$GOROOT/bin
 
-# Python
-alias python=/usr/local/bin/python3
-
-# Setting PATH for Python 2.7
-# The original version is saved in .bash_profile.pysave
-export PATH="/Library/Frameworks/Python.framework/Versions/2.7/bin:${PATH}"
-export PATH="/usr/local/opt/curl/bin:$PATH"
+# Brew
+export PATH=/opt/homebrew/bin:$PATH
 
 # Setting PATH for Python 3
-export PATH=/usr/local/share/python:$PATH
+export PATH="/opt/homebrew/Frameworks/Python.framework/Versions/Current/bin:${PATH}"
+alias python=/opt/homebrew/bin/python3
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
@@ -167,9 +156,3 @@ bindkey "^[[B" history-beginning-search-forward-end
 # SDK Man
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/jdiaconu/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/jdiaconu/Downloads/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/jdiaconu/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/jdiaconu/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
