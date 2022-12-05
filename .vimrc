@@ -18,7 +18,6 @@ set splitright
 
 " Global settings
 set incsearch
-set modelines=0
 set hidden
 set autoread                       " Update buffer when file changes elsewhere
 set novisualbell
@@ -153,6 +152,12 @@ vnoremap <c-k> :m '<-2<CR>gv=gv
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+nnoremap <Tab> :NERDTreeFind<CR>:tabn<CR>:redraw<CR>
+nnoremap <S-Tab> :NERDTreeToggle<CR>:wincmd p<CR>
+set wildignore+=*.pyc,*.o,*.obj,*.svn,*.swp,*.class,*.hg,*.DS_Store,*.min.*,*.swo
+let NERDTreeRespectWildIgnore=1
+let NERDTreeShowHidden=1
+let g:NERDTreeMinimalMenu=1
 
 " Git Status
 let g:NERDTreeGitStatusUseNerdFonts = 1
@@ -187,13 +192,6 @@ nnoremap <C-w><Tab> :bnext<CR>:redraw<CR>:ls<CR>
 nnoremap <silent> <C-x> :CtrlPBuffer<CR>
 command Bd :up | %bd | e#
 
-" Nerdtree
-nnoremap <Tab> :NERDTreeFind<CR>:tabn<CR>:redraw<CR>
-nnoremap <S-Tab> :NERDTreeToggle<CR>:wincmd p<CR>
-set wildignore+=*.pyc,*.o,*.obj,*.svn,*.swp,*.class,*.hg,*.DS_Store,*.min.*,*.swo
-let NERDTreeRespectWildIgnore=1
-let NERDTreeShowHidden=1
-
 " Sideways
 nnoremap <c-h> :SidewaysLeft<cr>
 nnoremap <c-l> :SidewaysRight<cr>
@@ -214,8 +212,8 @@ let g:ale_fixers = {
 \   'typescriptreact': ['eslint', 'prettier'],
 \   'cpp': ['clang-format'],
 \   'java':['google_java_format'],
-\   'python': ['yapf'],
-\   'go': ['gofmt'],
+\   'python': ['yapf', 'autoimport'],
+\   'go': ['gofmt', 'goimports', 'golines'],
 \   'css':['prettier'],
 \   'less':['prettier'],
 \   'scss':['prettier'],
@@ -224,18 +222,26 @@ let g:ale_fixers = {
 \   'markdown':['prettier'],
 \   'vue':['prettier'],
 \   'html':['prettier'],
-\   'xml':['prettier'],
-\   'kotlin':['ktlint']
+\   'xml':['xmllint'],
+\   'kotlin':['ktlint'],
+\   'rust':['rustfmt'],
 \}
 let g:ale_linters = {
 \   'java':['eclipselsp'],
 \   'cpp':['ccls'],
-\   'kotlin':['languageserver']
+\   'kotlin':['languageserver'],
+\   'python': ['jedils', 'pylint'],
+\   'xml': ['xmllint'],
+\   'go': ['gofmt', 'golint', 'gopls', 'govet', 'golangci-lint'],
+\   'rust': ['cargo', 'rls', 'rustfmt']
 \}
 let g:ale_fix_on_save = 1
 let g:ale_completion_enabled = 0
 let g:ale_sign_error = '❌'
 let g:ale_sign_warning = '⚠️'
+
+" ALE XML Settings
+let g:ale_xml_xmllint_indentsize = 4
 
 " ALE Java settings
 let g:ale_java_eclipselsp_path = '$HOME/.config/coc/extensions/coc-java-data/server'
@@ -274,11 +280,13 @@ let g:coc_global_extensions = [
 \   'coc-tsserver',
 \   'coc-json',
 \   'coc-python',
+\   'coc-jedi',
 \   'coc-clangd',
 \   'coc-java',
 \   'coc-xml',
 \   'coc-kotlin',
-\   'coc-markdownlint'
+\   'coc-markdownlint',
+\   'coc-rls'
 \]
 
 " Vim Snippets
@@ -290,6 +298,9 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 command! Diff call s:view_git_history()
 
 function! s:view_git_history() abort
+  " Disable auto insertion of headers
+  autocmd! BufNewfile
+
   Git difftool --name-only ! !^@
   call s:diff_current_quickfix_entry()
   " Bind <CR> for current quickfix window to properly set up diff split layout after selecting an item
@@ -332,7 +343,6 @@ nmap nm :LivedownToggle<CR>
 
 " COC Autocomplete
 inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-highlight CocFloating ctermbg=Gray
 
 " Remaps
 nnoremap <C-e> <C-u>
@@ -341,6 +351,7 @@ nnoremap gf :ALEFindReferences.<CR>
 nnoremap gd :ALEGoToDefinition.<CR>
 nnoremap gh :0Gclog<CR>
 nnoremap gj :Gdiffsplit<CR>
+nnoremap gv :ALEGoToDefinition -vsplit<CR>
 " Reselect pasted text
 nnoremap gp `[v`]
 

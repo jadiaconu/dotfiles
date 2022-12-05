@@ -137,6 +137,7 @@ export PATH=/opt/homebrew/bin:$PATH
 # Setting PATH for Python 3
 export PATH="/opt/homebrew/Frameworks/Python.framework/Versions/Current/bin:${PATH}"
 alias python=/opt/homebrew/bin/python3
+alias pip=/opt/homebrew/bin/pip3
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
@@ -156,3 +157,12 @@ bindkey "^[[B" history-beginning-search-forward-end
 # SDK Man
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+# Rust
+source "$HOME/.cargo/env"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/jdiaconu/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/jdiaconu/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/jdiaconu/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/jdiaconu/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
