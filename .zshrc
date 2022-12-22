@@ -134,10 +134,8 @@ export PATH=$PATH:$GOROOT/bin
 # Brew
 export PATH=/opt/homebrew/bin:$PATH
 
-# Setting PATH for Python 3
-export PATH="/opt/homebrew/Frameworks/Python.framework/Versions/Current/bin:${PATH}"
-alias python=/opt/homebrew/bin/python3
-alias pip=/opt/homebrew/bin/pip3
+# Python Settings
+eval "$(pyenv init --path)"
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
@@ -166,3 +164,5 @@ if [ -f '/Users/jdiaconu/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Us
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/jdiaconu/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/jdiaconu/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+
+source /Users/jdiaconu/.docker/init-zsh.sh || true # Added by Docker Desktop
