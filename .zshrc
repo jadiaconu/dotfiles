@@ -136,6 +136,7 @@ export PATH=/opt/homebrew/bin:$PATH
 
 # Python Settings
 eval "$(pyenv init --path)"
+eval "$(pyenv virtualenv-init -)"
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
@@ -166,3 +167,6 @@ if [ -f "$HOME/Downloads/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/Downloa
 
 # The next line enables shell command completion for gcloud.
 if [ -f "$HOME/Downloads/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/Downloads/google-cloud-sdk/completion.zsh.inc"; fi
+
+# Added by Docker Desktop
+source /Users/jdiaconu/.docker/init-zsh.sh || true

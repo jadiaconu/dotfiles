@@ -1,6 +1,7 @@
 filetype plugin indent on
 set term=xterm-256color
 set background=dark
+set termguicolors
 syntax enable
 
 " Spelling
@@ -82,7 +83,6 @@ call plug#begin('~/.vim/plugged')
 " Language
 
 " Code
-" Plug 'sheerun/vim-polyglot'
 Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-surround'
 Plug 'ntpeters/vim-better-whitespace'
@@ -113,15 +113,21 @@ Plug 'tpope/vim-abolish'
 Plug 'aklt/plantuml-syntax'
 Plug 'tyru/open-browser.vim'
 Plug 'weirongxu/plantuml-previewer.vim'
+Plug 'madox2/vim-ai', { 'do': './install.sh' }
+
+" Theme
+Plug 'ghifarit53/tokyonight-vim'
 
 call plug#end()
 
-" Visual aspect
-colorscheme xoria256
+" Theme
+colorscheme tokyonight
+let g:tokyonight_style = 'night'
+let g:tokyonight_enable_italic = 1
 
 " Lightline
 let g:lightline = {
-      \ 'colorscheme': 'wombat',
+      \ 'colorscheme': 'tokyonight',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
@@ -227,7 +233,7 @@ let g:ale_fixers = {
 \   'rust':['rustfmt'],
 \}
 let g:ale_linters = {
-\   'java':['eclipselsp'],
+\   'java':['eclipselsp', 'google_java_format'],
 \   'cpp':['ccls'],
 \   'kotlin':['languageserver'],
 \   'python': ['jedils', 'pylint'],
