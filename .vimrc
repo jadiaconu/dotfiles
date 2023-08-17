@@ -118,6 +118,9 @@ Plug 'madox2/vim-ai', { 'do': './install.sh' }
 " Theme
 Plug 'ghifarit53/tokyonight-vim'
 
+" Copilot
+Plug 'github/copilot.vim'
+
 call plug#end()
 
 " Theme
