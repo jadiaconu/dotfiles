@@ -113,10 +113,14 @@ Plug 'tpope/vim-abolish'
 Plug 'aklt/plantuml-syntax'
 Plug 'tyru/open-browser.vim'
 Plug 'weirongxu/plantuml-previewer.vim'
-Plug 'madox2/vim-ai', { 'do': './install.sh' }
+Plug 'azabiong/vim-board'
+Plug 'jlanzarotta/bufexplorer'
 
 " Theme
-Plug 'ghifarit53/tokyonight-vim'
+Plug 'tomasiser/vim-code-dark'
+
+" Rainbow
+let g:rainbow_active = 1
 
 " Copilot
 Plug 'github/copilot.vim'
@@ -124,13 +128,18 @@ Plug 'github/copilot.vim'
 call plug#end()
 
 " Theme
-colorscheme tokyonight
-let g:tokyonight_style = 'night'
-let g:tokyonight_enable_italic = 1
+colorscheme codedark
+
+" Buf Explor
+nnoremap ls :BufExplorer<CR>
+
+" Vim Board
+let BoardPath = '~/.vim/after/vim-board'
+nmap ln <Plug>(BoardMenu)
 
 " Lightline
 let g:lightline = {
-      \ 'colorscheme': 'tokyonight',
+      \ 'colorscheme': 'codedark',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
@@ -205,11 +214,6 @@ command Bd :up | %bd | e#
 nnoremap <c-h> :SidewaysLeft<cr>
 nnoremap <c-l> :SidewaysRight<cr>
 
-" Enable rainbow
-let g:rainbow_active = 1
-let g:rainbow_guifgs = ['RoyalBlue3', 'DarkOrange3', 'DarkOrchid3', 'FireBrick']
-let g:rainbow_ctermfgs = ['lightblue', 'lightgreen', 'yellow', 'red', 'magenta']
-
 " Vim Editor
 let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 
@@ -221,7 +225,7 @@ let g:ale_fixers = {
 \   'typescriptreact': ['eslint', 'prettier'],
 \   'cpp': ['clang-format'],
 \   'java':['google_java_format'],
-\   'python': ['yapf', 'autoimport'],
+\   'python': ['yapf', 'ruff_format', 'autoimport', 'pycln', 'pyflyby', 'isort'],
 \   'go': ['gofmt', 'goimports', 'golines'],
 \   'css':['prettier'],
 \   'less':['prettier'],
@@ -234,15 +238,17 @@ let g:ale_fixers = {
 \   'xml':['xmllint'],
 \   'kotlin':['ktlint'],
 \   'rust':['rustfmt'],
+\   'proto':['protolint']
 \}
 let g:ale_linters = {
 \   'java':['eclipselsp', 'google_java_format'],
 \   'cpp':['ccls'],
 \   'kotlin':['languageserver'],
-\   'python': ['jedils', 'pylint'],
+\   'python': ['jedils', 'mypy', 'ruff'],
 \   'xml': ['xmllint'],
 \   'go': ['gofmt', 'golint', 'gopls', 'govet', 'golangci-lint'],
-\   'rust': ['cargo', 'rls', 'rustfmt']
+\   'rust': ['cargo', 'rls', 'rustfmt'],
+\   'proto': ['protolint', 'protoc-gen-lint']
 \}
 let g:ale_fix_on_save = 1
 let g:ale_completion_enabled = 0
@@ -305,6 +311,9 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 " Fugitive
 command! Diff call s:view_git_history()
+
+" Send to jira
+xnoremap jr <esc>:!rm /tmp/jira <esc>:'<,'>w /tmp/jira <esc>:!create_jira /tmp/jira<CR>
 
 function! s:view_git_history() abort
   " Disable auto insertion of headers
