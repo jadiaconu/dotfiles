@@ -8,7 +8,7 @@ export ZSH=$HOME/.oh-my-zsh
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="dracula"
+ZSH_THEME="gozilla"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -133,7 +133,19 @@ export PATH=$PATH:$GOROOT/bin
 export PATH=/opt/homebrew/bin:$PATH
 
 # Python Settings
-eval "$(pyenv init --path)"
+# Activate Homebrew in the current shell session
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# Set the PYENV_ROOT variable to point to the location of Pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+
+# Check if pyenv command is available, if not, add Pyenv binary directory to PATH
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+
+# Initialize pyenv into the shell session
+eval "$(pyenv init -)"
+
+# Initialize pyenv-virtualenv plugin into the shell session
 eval "$(pyenv virtualenv-init -)"
 
 # RVM

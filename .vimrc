@@ -117,7 +117,7 @@ Plug 'azabiong/vim-board'
 Plug 'jlanzarotta/bufexplorer'
 
 " Theme
-Plug 'tomasiser/vim-code-dark'
+Plug 'lunacookies/vim-colors-xcode'
 
 " Rainbow
 let g:rainbow_active = 1
@@ -128,7 +128,7 @@ Plug 'github/copilot.vim'
 call plug#end()
 
 " Theme
-colorscheme codedark
+colorscheme xcode
 
 " Buf Explor
 nnoremap ls :BufExplorer<CR>
@@ -172,7 +172,7 @@ autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 nnoremap <Tab> :NERDTreeFind<CR>:tabn<CR>:redraw<CR>
 nnoremap <S-Tab> :NERDTreeToggle<CR>:wincmd p<CR>
-set wildignore+=*.pyc,*.o,*.obj,*.svn,*.swp,*.class,*.hg,*.DS_Store,*.min.*,*.swo
+set wildignore+=*.pyc,*.o,*.obj,*.svn,*.swp,*.class,*.hg,*.DS_Store,*.min.*,*.swo,*.git,*.gitignore,*.gitmodules,*.gitattributes,*.gitkeep,*.yarn,*node_modules*,*.gem,*.bundle
 let NERDTreeRespectWildIgnore=1
 let NERDTreeShowHidden=1
 let g:NERDTreeMinimalMenu=1
@@ -364,7 +364,7 @@ inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<C
 
 " Remaps
 nnoremap <C-e> <C-u>
-nnoremap gr :grep! -RI --exclude-dir=.ccls-cache --exclude-dir=.cache --exclude-dir=.ccls --exclude-dir=build --exclude-dir=node_modules --exclude-dir=vendor --exclude-dir=build --exclude-dir=public --exclude-dir=.git --exclude=tags --exclude-dir=.metadata <cword> .<CR> :botright copen<CR>
+nnoremap gr :grep! -RI --exclude-dir=.ccls-cache --exclude-dir=.cache --exclude-dir=.ccls --exclude-dir=build --exclude-dir=node_modules --exclude-dir=.yarn --exclude-dir=vendor --exclude-dir=build --exclude-dir=public --exclude-dir=.git --exclude=tags --exclude-dir=.metadata <cword> .<CR> :botright copen<CR>
 nnoremap gf :ALEFindReferences.<CR>
 nnoremap gd :ALEGoToDefinition.<CR>
 nnoremap gh :0Gclog<CR>
