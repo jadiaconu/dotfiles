@@ -1,0 +1,8 @@
+feat(some_topic): Some message
+
+Also:
+  - Something else
+
+Ref: ISSUE-1
+
+Signed-off-by: jdiaconu <jdiaconu@cisco.com>

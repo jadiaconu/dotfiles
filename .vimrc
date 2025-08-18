@@ -4,6 +4,10 @@ set background=dark
 set termguicolors
 syntax enable
 
+" Leader
+let g:mapleader = "l"
+let g:maplocalleader = "l"
+
 " Spelling
 set spelllang=en_us
 set spell
@@ -26,6 +30,7 @@ set ttyfast
 set relativenumber                 " Display line number
 set history=1000
 set ttimeoutlen=100
+set timeoutlen=1000
 
 " Suffixes : these are the files we are unlikely to edit
 set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.out,.toc,.swn,.swo
@@ -106,7 +111,7 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'preservim/tagbar'
 Plug 'mbbill/undotree'
 Plug 'AndrewRadev/sideways.vim'
-Plug 'neoclide/coc.nvim'
+Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'npm ci'}
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'shime/vim-livedown'
 Plug 'tpope/vim-abolish'
@@ -124,6 +129,7 @@ let g:rainbow_active = 1
 
 " Copilot
 Plug 'github/copilot.vim'
+Plug 'DanBradbury/copilot-chat.vim'
 
 call plug#end()
 
@@ -244,7 +250,7 @@ let g:ale_linters = {
 \   'java':['eclipselsp', 'google_java_format'],
 \   'cpp':['ccls'],
 \   'kotlin':['languageserver'],
-\   'python': ['jedils', 'mypy', 'ruff'],
+\   'python': ['jedils', 'ruff', 'pylint'],
 \   'xml': ['xmllint'],
 \   'go': ['gofmt', 'golint', 'gopls', 'govet', 'golangci-lint'],
 \   'rust': ['cargo', 'rls', 'rustfmt'],
@@ -268,6 +274,10 @@ let g:ale_cpp_ccls_init_options = {}
 
 " ALE Toggle Fix on save
 command! Toggle call s:ale_toggle('buffer')
+
+" Copilot
+nnoremap <Leader>c :CopilotChatOpen<CR>
+vmap <Leader>a <Plug>CopilotChatAddSelection
 
 function! s:ale_toggle(...)
     let s:fckALEStatus = {}
@@ -294,7 +304,6 @@ let g:coc_global_extensions = [
 \   'coc-yaml',
 \   'coc-tsserver',
 \   'coc-json',
-\   'coc-python',
 \   'coc-jedi',
 \   'coc-clangd',
 \   'coc-java',
