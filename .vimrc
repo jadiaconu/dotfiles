@@ -42,10 +42,10 @@ set showmatch
 set showmode
 set showcmd
 
-" Highlight column 80
+" Highlight column 100
 if exists('+colorcolumn')
   highlight ColorColumn ctermbg=233 guibg=#121212
-  set colorcolumn=80
+  set colorcolumn=100
 endif
 
 " GUI Settings
@@ -262,7 +262,7 @@ let g:ale_sign_error = '❌'
 let g:ale_sign_warning = '⚠️'
 
 " Set the max-len for different languages
-let g:ale_go_golines_options = '--max-len=80'
+let g:ale_go_golines_options = '--max-len=100'
 
 " ALE XML Settings
 let g:ale_xml_xmllint_indentsize = 4
