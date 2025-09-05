@@ -28,3 +28,4 @@ jdt.ls-java-project
 geckodriver.log
 .env
 .gradle
+coc-settings.json

@@ -57,7 +57,6 @@ jsonschema==4.21.1
 jsonschema-specifications==2023.12.1
 kaleido==0.2.1
 libcst==1.4.0
-llm_ranking_inference @ git+https://wwwin-github.cisco.com/promptintel-ai/pi-llm-ranking-inference@baf795e1c250b0071c485234f866ead2bcc77642
 llvmlite==0.43.0
 locust==2.24.1
 lorem-text==2.1
@@ -87,7 +86,6 @@ patsy==0.5.6
 pillow==10.3.0
 platformdirs==4.2.2
 plotly==5.21.0
-ppu-text-class @ file:///Users/jdiaconu/Documents/Projects/AI/PPUs/ppu/modules/ppu-text-class
 protobuf==3.19.4
 protolint==1.1.4
 psutil==5.9.8
@@ -141,7 +139,6 @@ streamlit==1.33.0
 tables==3.9.2
 tenacity==8.2.3
 tflite==2.10.0
-tflite-support-nightly @ file:///Users/jdiaconu/Documents/Projects/Interviews/AI%3AML/Applied/tflite-support/wheels/tflite_support_nightly-0.4.4.dev20221221-cp311-cp311-macosx_13_0_arm64.whl
 threadpoolctl==3.4.0
 tokenizers==0.19.1
 toml==0.10.2
