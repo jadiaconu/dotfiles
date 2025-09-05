@@ -232,7 +232,7 @@ let g:ale_fixers = {
 \   'cpp': ['clang-format'],
 \   'java':['google_java_format'],
 \   'python': ['yapf', 'ruff_format', 'autoimport', 'pycln', 'pyflyby', 'isort'],
-\   'go': ['gofmt', 'goimports', 'golines'],
+\   'go': ['gofmt', 'goimports', 'golines', 'golangci_lint', 'gopls'],
 \   'css':['prettier'],
 \   'less':['prettier'],
 \   'scss':['prettier'],
@@ -260,6 +260,9 @@ let g:ale_fix_on_save = 1
 let g:ale_completion_enabled = 0
 let g:ale_sign_error = '❌'
 let g:ale_sign_warning = '⚠️'
+
+" Set the max-len for different languages
+let g:ale_go_golines_options = '--max-len=80'
 
 " ALE XML Settings
 let g:ale_xml_xmllint_indentsize = 4
