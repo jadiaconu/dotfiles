@@ -120,6 +120,7 @@ Plug 'tyru/open-browser.vim'
 Plug 'weirongxu/plantuml-previewer.vim'
 Plug 'azabiong/vim-board'
 Plug 'jlanzarotta/bufexplorer'
+Plug 'instant-markdown/vim-instant-markdown', {'for': 'markdown', 'do': 'yarn install'}
 
 " Theme
 Plug 'lunacookies/vim-colors-xcode'
