@@ -121,6 +121,7 @@ Plug 'weirongxu/plantuml-previewer.vim'
 Plug 'azabiong/vim-board'
 Plug 'jlanzarotta/bufexplorer'
 Plug 'instant-markdown/vim-instant-markdown', {'for': 'markdown', 'do': 'yarn install'}
+Plug 'tsandall/vim-rego'
 
 " Theme
 Plug 'lunacookies/vim-colors-xcode'
@@ -146,7 +147,7 @@ nmap ln <Plug>(BoardMenu)
 
 " Lightline
 let g:lightline = {
-      \ 'colorscheme': 'codedark',
+      \ 'colorscheme': 'wombat',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
