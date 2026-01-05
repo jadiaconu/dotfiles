@@ -38,7 +38,7 @@ keymap({ "n", "v", "i" }, "<ScrollWheelUp>", "k", { silent = true })
 keymap({ "n", "v", "i" }, "<ScrollWheelDown>", "j", { silent = true })
 
 -- Jump back after jumping in (Standard Neovim, works with LSP)
-keymap('n', '<C-t>', '<C-o>', { desc = 'Jump Back' })
+keymap("n", "<C-t>", "<C-o>", { desc = "Jump Back" })
 
 -- Git
 keymap("n", "gh", ":0Gclog<CR>", opts)
@@ -52,4 +52,5 @@ keymap("n", "l", ":SidewaysLeft<CR>", opts)
 keymap("n", "m", ":SidewaysRight<CR>", opts)
 
 -- Copilot
-keymap('i', '<S-Tab>', 'copilot#Accept("\\<S-Tab>")', { expr = true, replace_keycodes = false })
+keymap("i", "<S-Tab>", 'copilot#Accept("\\<S-Tab>")', { expr = true, replace_keycodes = false })
+keymap("i", "<Tab>", 'copilot#Accept("<Tab>")', { expr = true, replace_keycodes = false })

@@ -66,20 +66,25 @@ return {
     opts = {
       ensure_installed = {
         -- Go
-        "gopls", "goimports", "delve",
+        "gopls",
+        "goimports",
+        "delve",
         -- TS/JS
-        "typescript-language-server", "vtsls",
+        "typescript-language-server",
+        "vtsls",
         -- Bash
-        "bash-language-server", "shfmt", "shellcheck",
+        "bash-language-server",
+        "shfmt",
+        "shellcheck",
         -- Lua
         "stylua",
         -- Python
         "pyright", -- LSP
-        "ruff",    -- Modern Linter/Formatter (extremely fast)
-        "black",   -- Formatter (if you prefer it over ruff)
+        "ruff", -- Modern Linter/Formatter (extremely fast)
+        "black", -- Formatter (if you prefer it over ruff)
         "flake8",
         -- Java
-        "jdtls",      -- The main Java LSP
+        "jdtls", -- The main Java LSP
         "java-debug-adapter",
         "java-test",
       },

@@ -17,8 +17,7 @@ opt.visualbell = false
 opt.ttyfast = true
 opt.relativenumber = true
 
-opt.suffixes =
-".bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.out,.toc,.swn,.swo"
+opt.suffixes = ".bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.out,.toc,.swn,.swo"
 
 -- Display
 opt.ruler = true
@@ -38,8 +37,7 @@ opt.showfulltag = true
 -- Wildmenu
 opt.wildmode = "longest:full"
 opt.wildmenu = true
-opt.wildignore =
-"*.o,*.a,*.so,*.ko,*~,*.swp,*.pyc,*.dll,tags,*.o.*,*.swo,*.swn,*.log,.git/,.hg/,.svn/,build/"
+opt.wildignore = "*.o,*.a,*.so,*.ko,*~,*.swp,*.pyc,*.dll,tags,*.o.*,*.swo,*.swn,*.log,.git/,.hg/,.svn/,build/"
 
 -- Indentation markers
 opt.list = true
@@ -53,3 +51,6 @@ opt.listchars = {
 
 opt.encoding = "utf-8"
 opt.tags = "tags"
+
+-- Clipboard
+opt.clipboard = "unnamedplus"

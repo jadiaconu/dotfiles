@@ -2,7 +2,7 @@
 vim.g.mapleader = "l"
 vim.g.maplocalleader = "l"
 
--- disable netrw at the very beginning of init.lua
+-- Disable netrw at the very beginning of init.lua
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
@@ -12,3 +12,4 @@ vim.g.copilot_no_tab_map = true
 require("config.autocmds")
 require("config.keymaps")
 require("config.lazy")
+require("config.options")
