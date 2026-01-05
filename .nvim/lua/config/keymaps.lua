@@ -33,10 +33,6 @@ keymap("n", "<Tab>", ":Neotree toggle<CR>:tabn<CR>:redraw<CR>", opts)
 -- Aerial
 keymap("n", "<S-Tab>", "<cmd>AerialToggle!<CR>", opts)
 
--- Mouse
-keymap({ "n", "v", "i" }, "<ScrollWheelUp>", "k", { silent = true })
-keymap({ "n", "v", "i" }, "<ScrollWheelDown>", "j", { silent = true })
-
 -- Jump back after jumping in (Standard Neovim, works with LSP)
 keymap("n", "<C-t>", "<C-o>", { desc = "Jump Back" })
 

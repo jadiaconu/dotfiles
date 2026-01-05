@@ -54,3 +54,6 @@ opt.tags = "tags"
 
 -- Clipboard
 opt.clipboard = "unnamedplus"
+
+-- Mouse
+opt.mouse = ""
