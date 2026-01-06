@@ -4,14 +4,13 @@ return {
     branch = "v3.x",
     dependencies = {
       "nvim-lua/plenary.nvim",
-      "nvim-tree/nvim-web-devicons"
+      "nvim-tree/nvim-web-devicons",
     },
     config = function()
-      follow_current_file = true,
       require("neo-tree").setup({
+        follow_current_file = true,
         close_if_last_window = true,
         filesystem = {
-          follow_current_file = true,
           hijack_netrw_behavior = "open_default",
           filtered_items = {
             hide_dotfiles = false,
@@ -26,5 +25,5 @@ return {
         },
       })
     end,
-  }
+  },
 }

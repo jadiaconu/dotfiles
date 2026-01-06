@@ -8,7 +8,7 @@ return {
   {
     "azabiong/vim-board",
     config = function()
-      vim.g.BoardPath = '~/.vim/after/vim-board'
+      vim.g.BoardPath = "~/.vim/after/vim-board"
     end,
   },
   { "junegunn/vim-easy-align" },

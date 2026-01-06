@@ -14,6 +14,10 @@ opt.incsearch = true
 opt.hidden = true
 opt.autoread = true
 opt.visualbell = false
+opt.updatetime = 300
+opt.lazyredraw = true
+opt.timeoutlen = 500
+opt.guicursor = ""
 opt.ttyfast = true
 opt.relativenumber = true
 
