@@ -154,10 +154,6 @@ eval "$(pyenv init -)"
 # Initialize pyenv-virtualenv plugin into the shell session
 eval "$(pyenv virtualenv-init -)"
 
-# Git GPG Signing
-if [ -r ~/.zshrc ]; then echo -e '\nexport GPG_TTY=$(tty)' >> ~/.zshrc; \
-  else echo -e '\nexport GPG_TTY=$(tty)' >> ~/.zprofile; fi
-
 # RVM
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
