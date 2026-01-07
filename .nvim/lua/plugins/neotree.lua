@@ -8,9 +8,9 @@ return {
     },
     config = function()
       require("neo-tree").setup({
-        follow_current_file = true,
         close_if_last_window = true,
         filesystem = {
+          follow_current_file = true,
           hijack_netrw_behavior = "open_default",
           filtered_items = {
             hide_dotfiles = false,
