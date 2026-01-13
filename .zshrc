@@ -176,3 +176,6 @@ export SDKMAN_DIR="$HOME/.sdkman"
 
 # Export GPG_TTY
 export GPG_TTY=$(tty)
+
+# Alias vim to nvim
+alias vim='nvim'
