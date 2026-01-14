@@ -1,5 +1,32 @@
 return {
-  -------------------------------------------------------------------
+  ---------------------------------------------------------------------------
+  -- Onform.nvim Configuration
+  ---------------------------------------------------------------------------
+  {
+    "stevearc/conform.nvim",
+    opts = function()
+      local conform = require("conform")
+      conform.setup({
+        formatters_by_ft = {
+          typescript = { "prettierd", "prettier" },
+          typescriptreact = { "prettierd", "prettier" },
+          javascript = { "prettierd", "prettier" },
+          javascriptreact = { "prettierd", "prettier" },
+          json = { "prettierd", "prettier" },
+          html = { "prettierd", "prettier" },
+          css = { "prettierd", "prettier" },
+        },
+
+        format_on_save = {
+          -- These options will be passed to conform.format()
+          timeout_ms = 500,
+          lsp_format = "fallback",
+        },
+      })
+    end,
+  },
+
+  ---------------------------------------------------------------------------
   -- Treesitter
   ---------------------------------------------------------------------------
   {
@@ -9,7 +36,7 @@ return {
         "bash",
         "html",
         "javascript",
-        "golang",
+        "go",
         "json",
         "lua",
         "markdown",
@@ -70,7 +97,6 @@ return {
         "goimports",
         "delve",
         -- TS/JS
-        "typescript-language-server",
         "vtsls",
         -- Bash
         "bash-language-server",
@@ -87,6 +113,8 @@ return {
         "jdtls", -- The main Java LSP
         "java-debug-adapter",
         "java-test",
+        -- General
+        "prettierd", -- Prettier daemon for formatting
       },
     },
   },
@@ -106,7 +134,7 @@ return {
             },
           },
         },
-        -- The TS server is handled by vtsls in modern LazyVim
+        -- TypeScript / JavaScript
         vtsls = {},
         -- Bash
         bashls = {},
