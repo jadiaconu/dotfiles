@@ -15,6 +15,7 @@ return {
           json = { "prettierd", "prettier" },
           html = { "prettierd", "prettier" },
           css = { "prettierd", "prettier" },
+          go = { "gofmt" },
         },
 
         format_on_save = {
@@ -95,6 +96,7 @@ return {
         -- Go
         "gopls",
         "goimports",
+        "gofumpt",
         "delve",
         -- TS/JS
         "vtsls",
@@ -127,6 +129,12 @@ return {
         gopls = {
           settings = {
             gopls = {
+              analyses = {
+                unusedparams = true,
+                shadow = true,
+              },
+              staticcheck = true,
+              gofumpt = true,
               hints = {
                 assignVariableTypes = true,
                 compositeLiteralFields = true,

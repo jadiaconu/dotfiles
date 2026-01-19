@@ -15,6 +15,9 @@ return {
           filtered_items = {
             hide_dotfiles = false,
             hide_gitignored = true,
+            always_show = {
+              ".env",
+            },
           },
         },
         window = {
